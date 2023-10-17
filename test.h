@@ -15,7 +15,8 @@
 
 typedef struct s_list
 {
-	void		*content;
+	int				type;
+	void			*data;
 	struct s_list	*next;
 }			t_list;
 #endif

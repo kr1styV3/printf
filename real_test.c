@@ -35,37 +35,43 @@ void	ft_putnbr(int nb)
 	ft_putchar(number % 10 + 48);
 }
 
-int	ft_printf(const char *format, int num, int n2, int n3)
+void	check(const char *format, ...)
+{
+	if (*format == NULL)
+		return ;
+	t_list	*data;
+	data->data=arg???
+}
+
+int	ft_printf(const char *format, t_list *data)
 {
 	int	i;
-	int	a[3];
 	int	b;
-	
+
 	i = 0;
 	b = 0;
-	a[0] = num;
-	a[1] = n2;
-	a[2] = n3;
+
 	while (format[i] != '\0')
 	{
-		if (format[i] == '%')
+		if (format[i] == '%')//also needs to check for '\'
 		{
-			ft_putnbr(a[b]);
+			ft_putnbr(data); //needs to check i + 1 for (c, d, e, f, i, o, s, u, x, %)
 			i = i + 2;
-			b++;	
+			b++;
 		}
 		ft_putchar(format[i]);
 		i++;
 	}
 }
+
 int	main(void)
 {
 	int	num;
 	int	num2;
 	int	num3;
-	
+
 	num = 42;
 	num2 = 375;
 	num3 = 23;
-	ft_printf("il mio numero e' :  %i  %i %i ", num, num2, num3);
+	check("il mio numero e' :  %i  %i %i ", num, num2, num3);
 }
