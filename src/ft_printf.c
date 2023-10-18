@@ -9,7 +9,7 @@
 /*   Updated: 2023/10/15 22:55:50 by chrlomba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "test.h"
+#include "libft.h"
 
 #include <unistd.h>
 #include <stdarg.h>
@@ -19,6 +19,7 @@ void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
+
 void	ft_putstr(char *ptr)
 {
 	int	i;
