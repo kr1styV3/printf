@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chrlomba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: chrlomba <chrlomba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 23:10:35 by chrlomba          #+#    #+#             */
-/*   Updated: 2023/10/10 23:13:55 by chrlomba         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:04:14 by chrlomba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd((n % 10) + '0', fd);
 	}
 }
-
+/*
 int main(void)
 {
 	int num1 = 42;
@@ -67,4 +67,4 @@ int main(void)
 
 	return (0);
 }
-
+*/
