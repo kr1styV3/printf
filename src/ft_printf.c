@@ -6,7 +6,7 @@
 /*   By: chrlomba <chrlomba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 22:36:18 by chrlomba          #+#    #+#             */
-/*   Updated: 2023/10/18 21:56:24 by chrlomba         ###   ########.fr       */
+/*   Updated: 2023/10/18 22:58:48 by chrlomba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int	check_format(const char *ptr, int i, va_list ap)
 
 int	g_check_params(const char *ptr, va_list ap)
 {
+	void			*addr;
+	unsigned long	ad;
+
 	if (*ptr == 'i' || *ptr == 'd')
 	{
 		ft_putnbr(va_arg(ap, int ));
@@ -37,6 +40,18 @@ int	g_check_params(const char *ptr, va_list ap)
 	else if (*ptr == 's')
 	{
 		ft_putstr(va_arg(ap, const char *));
+	}
+	else if (*ptr == 'p')
+	{
+		addr = va_arg(ap, void *);
+		if (addr != NULL)
+			ft_putstr("(null)");
+	}
+	else
+	{
+		ad = (unsigned long)addr;
+		ft_putstr("0x");
+		ft_putnbr_base(addr, "0123456789abcdef");
 	}
 	return (0);
 }
