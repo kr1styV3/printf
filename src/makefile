@@ -1,6 +1,6 @@
 # Variables
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I../include
+CFLAGS = -Wall -Werror -Wextra -g -I../include
 SRC_FILES = main.c ft_printf.c ft_printf_conv.c
 OBJ_DIR = ../obj
 OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))

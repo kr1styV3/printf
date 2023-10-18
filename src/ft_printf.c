@@ -6,7 +6,7 @@
 /*   By: chrlomba <chrlomba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 22:36:18 by chrlomba          #+#    #+#             */
-/*   Updated: 2023/10/18 19:22:23 by chrlomba         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:51:13 by chrlomba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,15 @@ int	ft_printf(const char *format, ...)
 	va_start(list, format);
 	while (format[i] != '\0')
 	{
-		first_check(bool, &format[i], list, i);
+		if (bool == 0 && format[i] == '%')
+			bool = 1;
+		if (bool == 1)
+		{
+			if (check_format(&format[i], i, list))
+			{
+				g_check_params(&format[i + 1], list);
+			}
+		}
 		ft_putchar(format[i]);
 		i++;
 	}
