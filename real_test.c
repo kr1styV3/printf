@@ -12,11 +12,23 @@
 #include "test.h"
 
 #include <unistd.h>
+#include <stdarg.h>
 
 
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
+}
+void	ft_putstr(char *ptr)
+{
+	int	i;
+
+	i = 0;
+	while (ptr[i] != '\0')
+	{
+		ft_putchar(ptr[i]);
+		i++;
+	}
 }
 
 void	ft_putnbr(int nb)
@@ -35,43 +47,53 @@ void	ft_putnbr(int nb)
 	ft_putchar(number % 10 + 48);
 }
 
-void	check(const char *format, ...)
-{
-	if (*format == NULL)
-		return ;
-	t_list	*data;
-	data->data=arg???
-}
 
-int	ft_printf(const char *format, t_list *data)
+int	ft_printf(const char *format, ...)
 {
-	int	i;
-	int	b;
+	va_list	list;
+	int		i;
 
 	i = 0;
-	b = 0;
-
+	va_start(list, format);
 	while (format[i] != '\0')
 	{
-		if (format[i] == '%')//also needs to check for '\'
+		if (format[i] == '%') /*also needs to check for '\'*/
 		{
-			ft_putnbr(data); //needs to check i + 1 for (c, d, e, f, i, o, s, u, x, %)
+			if (format[i + 1] == 'i')
+			{
+				ft_putnbr(va_arg(list, int ));
+			}/*needs to check i + 1 for ( d, e, f,  o, u, x, %)*/
+			else if (format[i + 1] == 'c')
+			{
+				ft_putchar((char )va_arg(list, int));
+			}
+			else if (format [i + 1] == 's')
+			{
+				ft_putstr((char *)va_arg(list, char *));
+			}
 			i = i + 2;
-			b++;
 		}
 		ft_putchar(format[i]);
 		i++;
 	}
+	va_end(list);
+	return (0);
 }
 
 int	main(void)
 {
-	int	num;
-	int	num2;
-	int	num3;
+	char		*just_check;
+	int			num;
+	int			num2;
+	char		c;
+	int			num3;
+	char		*str;
 
+	just_check = "do_you_work??\n";
 	num = 42;
 	num2 = 375;
 	num3 = 23;
-	check("il mio numero e' :  %i  %i %i ", num, num2, num3);
+	c = '*';
+	str = "**    *** 101010 *** 1-1-1--- aAa zz ";
+	ft_printf("%sil mio numero e' :   %i  %i \nil mio char e : \t%c \nil mio ultimo num e : %i \nla mia stringa fa cosi : %s ", just_check, num, num2, c, num3, str);
 }
