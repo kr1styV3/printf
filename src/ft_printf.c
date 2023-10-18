@@ -6,7 +6,7 @@
 /*   By: chrlomba <chrlomba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 22:36:18 by chrlomba          #+#    #+#             */
-/*   Updated: 2023/10/18 19:51:13 by chrlomba         ###   ########.fr       */
+/*   Updated: 2023/10/18 21:56:24 by chrlomba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,14 @@
 /*implement flag checkln 21*/
 int	check_format(const char *ptr, int i, va_list ap)
 {
-	if (g_check_params(&ptr[i + 1], ap))
+	(void )i;
+	ptr++;
+	if (g_check_params(ptr, ap))
 		return (1);
 	else
 	{
 		return (0);
 	}
-}
-
-void	first_check(int bol, const char *ptr, va_list ap, int i)
-{
-	if (bol == 0 && *ptr == '%')
-		bol = 1;
-	else if (bol == 1)
-	{
-		if (check_format(ptr, i, ap))
-		{
-			g_check_params(++ptr, ap);
-		}
-	}
-	return ;
 }
 
 int	g_check_params(const char *ptr, va_list ap)
@@ -44,11 +32,11 @@ int	g_check_params(const char *ptr, va_list ap)
 	}
 	else if (*ptr == 'c')
 	{
-		ft_putchar((char )va_arg(ap, int));
+		ft_putchar((const char )va_arg(ap, int));
 	}
 	else if (*ptr == 's')
 	{
-		ft_putstr(va_arg(ap, char *));
+		ft_putstr(va_arg(ap, const char *));
 	}
 	return (0);
 }
@@ -68,10 +56,9 @@ int	ft_printf(const char *format, ...)
 			bool = 1;
 		if (bool == 1)
 		{
-			if (check_format(&format[i], i, list))
-			{
-				g_check_params(&format[i + 1], list);
-			}
+			bool = 0;
+			check_format(&format[i], i, list);
+			i += 2;
 		}
 		ft_putchar(format[i]);
 		i++;
