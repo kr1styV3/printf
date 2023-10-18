@@ -6,18 +6,18 @@
 /*   By: chrlomba <chrlomba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:33:06 by chrlomba          #+#    #+#             */
-/*   Updated: 2023/10/18 15:26:14 by chrlomba         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:19:38 by chrlomba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+void	ft_putchar(const char c)
 {
 	write (1, &c, 1);
 }
 
-void	ft_putstr(char *ptr)
+void	ft_putstr(const char *ptr)
 {
 	int	i;
 
