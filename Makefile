@@ -9,6 +9,7 @@ CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -I
 RM			= rm -f
 AR			= ar rcs
+OUTPUT		= output
 
 # Colors
 
@@ -24,8 +25,8 @@ WHITE = \033[0;97m
 
 #Sources
 
-SRC_FILES	=	ft_printf
-
+SRC_FILES	=	ft_printf ft_printf_conv main
+OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_FILES)))
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -36,12 +37,13 @@ OBJF		=	.cache_exists
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ)
+$(NAME):	$(OBJ_FILES)
 			@make -C $(LIBFT)
 			@cp libft/libft.a .
 			@mv libft.a $(NAME)
-			@$(AR) $(NAME) $(OBJ)
+			@$(AR) $(NAME) $^
 			@echo "$(GREEN)ft_printf compiled!$(DEF_COLOR)"
+
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"

@@ -1,31 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_printf_conv.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chrlomba <chrlomba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 14:42:42 by chrlomba          #+#    #+#             */
-/*   Updated: 2023/10/18 14:21:54 by chrlomba         ###   ########.fr       */
+/*   Created: 2023/10/18 14:33:06 by chrlomba          #+#    #+#             */
+/*   Updated: 2023/10/18 15:26:14 by chrlomba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+void	ft_putchar(char c)
 {
-	size_t	i;
+	write (1, &c, 1);
+}
 
-	if (size == 0)
-	{
-		return (ft_strlen(src));
-	}
+void	ft_putstr(char *ptr)
+{
+	int	i;
+
 	i = 0;
-	while (src[i] != '\0' && i < size - 1)
+	while (ptr[i] != '\0')
 	{
-		dest[i] = src[i];
+		ft_putchar(ptr[i]);
 		i++;
 	}
-	dest[i] = '\0';
-	return (ft_strlen(src));
+}
+
+void	ft_putnbr(int nb)
+{
+	unsigned int	number;
+
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		number = nb * -1;
+	}
+	else
+		number = nb;
+	if (number >= 10)
+		ft_putnbr(number / 10);
+	ft_putchar(number % 10 + 48);
 }
