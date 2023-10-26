@@ -5,28 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chrlomba <chrlomba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 21:52:01 by chrlomba          #+#    #+#             */
-/*   Updated: 2023/10/26 14:56:32 by chrlomba         ###   ########.fr       */
+/*   Created: 2023/10/15 22:36:18 by chrlomba          #+#    #+#             */
+/*   Updated: 2023/10/24 13:58:54 by chrlomba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 /*implement flag checkln 21*/
-int	check_format(const char *ptr, int *out, int *i, va_list ap)
+int	check_format(const char *ptr, int i, va_list ap)
 {
-	(*i)++;
-	if (check_params(ptr[*i], ap))
+	++ptr;
+	if (check_params(*ptr, ap))
 		return (1);
 	else
 	{
-		if (ptr[*i] == '-')
+		if (*ptr == '-')
 		{
-			(*i)++;
-			*out += left_just(&ptr[*i], ap, *out);
+			++ptr;
+			i += left_just(ptr, ap, i);
 		}
 	}
-	return (*out);
+	return (i);
 }
 
 int	check_params(const char ptr, va_list ap)
@@ -58,23 +58,22 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	list;
 	int		i;
-	int		out;
 	int		bool;
 
 	i = 0;
 	bool = 0;
-	out = 0;
 	va_start(list, format);
-	while (format[i] != '\0')
+	while (*format != '\0')
 	{
-		if (bool == 0 && format[i] == '%')
+		if (bool == 0 && *format == '%')
 			bool = 1;
 		if (bool == 1)
 		{
-			out += check_format(&format[i], &out, &i, list);
+			i += check_format(format, i, list);
 			bool = 0;
 		}
-		ft_putchar(format[i]);
+		ft_putchar(*format);
+		format++;
 		i++;
 	}
 	va_end(list);

@@ -1,7 +1,7 @@
 # Variables
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -I../include
-SRC_FILES = main.c ft_printf.c ft_printf_conv.c ft_printf_hex
+CFLAGS = -g -L../libft -lft -I../include
+SRC_FILES = main.c ft_printf.c ft_printf_conv.c
 OBJ_DIR = ../obj
 OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 OUTPUT = print
@@ -11,7 +11,7 @@ all: $(OUTPUT)
 
 $(OUTPUT): $(OBJ_FILES)
 	@echo "Creating executable: $(OUTPUT)"
-	@$(CC) $(CFLAGS) -o $(OUTPUT) $(OBJ_FILES)
+	@$(CC)  -o $(OUTPUT) $(OBJ_FILES) $(CFLAGS)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
