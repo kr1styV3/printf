@@ -6,7 +6,7 @@
 /*   By: chrlomba <chrlomba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:46 by chrlomba          #+#    #+#             */
-/*   Updated: 2023/10/26 14:10:19 by chrlomba         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:54:00 by chrlomba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,23 @@ void	ft_unsigned_putnbr(unsigned int nb)
 	ft_putchar(number % 10 + 48);
 }
 
-int	left_just(const char *ptr, va_list ap, int out)
+int	left_just(const char *ptr, va_list ap, int out, int *j)
 {
 	int		buff;
-	int		j;
+	int		i;
 
-	j = 0;
-	buff = ft_atoi (ptr) - 2;
-	while (*ptr >= '0' && *ptr <= '9')
+	i = 0;
+	buff = ft_atoi (ptr);
+	while (ptr[*j] >= '0' && ptr[*j] <= '9')
 	{
-		ptr++;
+		(*j)++;
 	}
-	check_params(*ptr, ap);
-	while (j < buff)
+	check_params(ptr[*j], ap);
+	while (i < buff)
 	{
 		ft_putchar(' ');
-		j++;
+		i++;
 		out++;
 	}
-	return (j);
+	return (i);
 }

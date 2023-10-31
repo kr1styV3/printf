@@ -1,7 +1,7 @@
 # Variables
 CC = gcc
 CFLAGS = -g -L../libft -lft -I../include
-SRC_FILES = main.c ft_printf.c ft_printf_conv.c
+SRC_FILES = main.c ft_printf.c ft_printf_conv.c ft_printf_utils.c
 OBJ_DIR = ../obj
 OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 OUTPUT = print

@@ -6,7 +6,7 @@
 /*   By: chrlomba <chrlomba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 21:52:01 by chrlomba          #+#    #+#             */
-/*   Updated: 2023/10/26 14:56:32 by chrlomba         ###   ########.fr       */
+/*   Updated: 2023/10/31 12:17:35 by chrlomba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,28 @@
 /*implement flag checkln 21*/
 int	check_format(const char *ptr, int *out, int *i, va_list ap)
 {
+	int	j;
+
 	(*i)++;
 	if (check_params(ptr[*i], ap))
+	{
+		(*i)++;
 		return (1);
+	}
 	else
 	{
+		j = 0;
 		if (ptr[*i] == '-')
 		{
 			(*i)++;
-			*out += left_just(&ptr[*i], ap, *out);
+			*out += left_just(&ptr[*i], ap, *out, &j);
+			*i += j + 1;
+		}
+		if (ptr[*i] == '0')
+		{
+			(*i)++;
+			ptr = zero_padding(&ptr[*i], ap, &j);
+			*i += j + 1;;
 		}
 	}
 	return (*out);

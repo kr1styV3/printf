@@ -6,7 +6,7 @@
 /*   By: chrlomba <chrlomba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:39:49 by chrlomba          #+#    #+#             */
-/*   Updated: 2023/10/26 14:03:33 by chrlomba         ###   ########.fr       */
+/*   Updated: 2023/10/31 12:08:02 by chrlomba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	main(void)
 	int			num;
 
 	num = 42;
-	//printf("%-5i;;", num);
-	ft_printf("%-5i\n\n%s", num, "do you work?");
+	//printf("%06i;;", 1234567);
+	ft_printf("%06ig\n\ng%06i\n\n%s", num, num, "do you work?");
 }

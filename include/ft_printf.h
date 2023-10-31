@@ -6,7 +6,7 @@
 /*   By: chrlomba <chrlomba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:27:23 by chrlomba          #+#    #+#             */
-/*   Updated: 2023/10/26 14:07:09 by chrlomba         ###   ########.fr       */
+/*   Updated: 2023/10/31 12:16:01 by chrlomba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void		ft_putstr(const char *ptr);
 void		ft_putnbr_base(unsigned long long nbr, char *base);
 void		ft_unsigned_putnbr(unsigned int nb);
 void		ft_putnbr(int nb);
-int			left_just(const char *ptr, va_list ap, int out);
+int			left_just(const char *ptr, va_list ap, int out, int *j);
+const char	*zero_padding(const char *ptr, va_list ap, int *j);
 #endif
